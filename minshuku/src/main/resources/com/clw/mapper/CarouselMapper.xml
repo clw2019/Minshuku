@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.mapper.CarouselMapper">
+  <resultMap id="BaseResultMap" type="com.clw.domain.Carousel">
+    <!--@mbg.generated-->
+    <!--@Table carousel-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="home_id" jdbcType="INTEGER" property="homeId" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, home_id, link, imgUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from carousel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from carousel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Carousel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into carousel (home_id, link, imgUrl
+      )
+    values (#{homeId,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Carousel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into carousel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        home_id,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="imgurl != null">
+        imgUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clw.domain.Carousel">
+    <!--@mbg.generated-->
+    update carousel
+    <set>
+      <if test="homeId != null">
+        home_id = #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        imgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clw.domain.Carousel">
+    <!--@mbg.generated-->
+    update carousel
+    set home_id = #{homeId,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
+      imgUrl = #{imgurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getCarousel" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from carousel
+  </select>
+    <delete id="deleteByHomeId">
+      delete from carousel
+      where home_id = #{homeId}
+    </delete>
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.mapper.CollectMapper">
+    <resultMap id="BaseResultMap" type="com.clw.domain.Collect">
+        <!--@mbg.generated-->
+        <!--@Table collect-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="home_id" jdbcType="INTEGER" property="homeId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, home_id, user_id, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from collect
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from collect
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Collect" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into collect (home_id, user_id, create_time,
+        update_time)
+        values (#{homeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Collect"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into collect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="homeId != null">
+                home_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="homeId != null">
+                #{homeId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clw.domain.Collect">
+        <!--@mbg.generated-->
+        update collect
+        <set>
+            <if test="homeId != null">
+                home_id = #{homeId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clw.domain.Collect">
+        <!--@mbg.generated-->
+        update collect
+        set home_id = #{homeId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByHomeIdAndUserId" resultMap="BaseResultMap">
+        select id
+        from collect
+        where home_id = #{homeId} and user_id = #{userId}
+    </select>
+
+    <select id="selectByHomeId" resultType="Integer">
+        select
+        user_id
+        from collect
+        where home_id = #{home_id}
+    </select>
+
+    <update id="updateCollection">
+        update home
+        set collection = collection + #{num}
+        where id = #{homeId}
+    </update>
+
+    <resultMap id="CollectPojoResultMap" type="com.clw.pojo.CollectPojo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="livepeople" jdbcType="INTEGER" property="livepeople"/>
+        <result column="collection" jdbcType="INTEGER" property="collection"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+
+<!--        <result column="user_id" jdbcType="INTEGER" property="userId"/>-->
+
+        <collection property="urlList" ofType="com.clw.domain.Img" column="id"
+                    select="com.clw.mapper.ImgMapper.selectUrlByHomeId"></collection>
+        <collection property="homeIdList" ofType="java.lang.Integer" column="user_id"
+                    select="selectHomIdByUserId"></collection>
+    </resultMap>
+    <select id="selectCollectByUserId" resultMap="CollectPojoResultMap">
+        SELECT h.*, c.user_id
+        FROM
+	    collect c
+	    LEFT JOIN home h ON c.home_id = h.id
+        WHERE c.user_id = #{userId}
+    </select>
+
+    <select id="selectHomIdByUserId" resultType="Integer">
+        select home_id
+        from collect
+        where user_id = #{user_id}
+    </select>
+</mapper>

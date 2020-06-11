@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.mapper.HomeMapper">
+    <resultMap id="BaseResultMap" type="com.clw.domain.Home">
+        <!--@mbg.generated-->
+        <!--@Table home-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="host_id" jdbcType="INTEGER" property="hostId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="livepeople" jdbcType="INTEGER" property="livepeople"/>
+        <result column="collection" jdbcType="INTEGER" property="collection"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, host_id, title, `describe`, price, address, area, livepeople, `collection`, `status`, flag,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from home
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from home
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Home" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into home (host_id, title, `describe`, price,
+        address, area, livepeople,
+        `collection`, `status`, flag, create_time,
+        update_time)
+        values ( #{hostId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+        #{address,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{livepeople,jdbcType=INTEGER},
+        #{collection,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Home"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into home
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hostId != null">
+                host_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+            <if test="livepeople != null">
+                livepeople,
+            </if>
+            <if test="collection != null">
+                `collection`,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hostId != null">
+                #{hostId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="livepeople != null">
+                #{livepeople,jdbcType=INTEGER},
+            </if>
+            <if test="collection != null">
+                #{collection,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clw.domain.Home">
+        <!--@mbg.generated-->
+        update home
+        <set>
+            <if test="hostId != null">
+                host_id = #{hostId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                `describe` = #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                area = #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="livepeople != null">
+                livepeople = #{livepeople,jdbcType=INTEGER},
+            </if>
+            <if test="collection != null">
+                `collection` = #{collection,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="flag != null">
+                flag = #{flag,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clw.domain.Home">
+        <!--@mbg.generated-->
+        update home
+        set host_id = #{hostId,jdbcType=INTEGER},
+        title = #{title,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
+        price = #{price,jdbcType=DECIMAL},
+        address = #{address,jdbcType=VARCHAR},
+        area = #{area,jdbcType=VARCHAR},
+        livepeople = #{livepeople,jdbcType=INTEGER},
+        `collection` = #{collection,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
+        flag = #{flag,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="findAllHomeDetail" type="com.clw.pojo.HomeData">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <collection
+                property="urlList"
+                ofType="com.clw.domain.Img"
+                select="com.clw.mapper.ImgMapper.selectUrlByHomeId"
+                column="id">
+        </collection>
+        <collection
+                property="collectList"
+                ofType="java.lang.Integer"
+                select="com.clw.mapper.CollectMapper.selectByHomeId"
+                column="id">
+        </collection>
+    </resultMap>
+
+    <select id="getHomeData" resultMap="findAllHomeDetail">
+        SELECT h.id, h.host_id, h.title, h.price, h.address, h.area, h.livepeople, h.describe, hd.suite, hd.bedroom, hd.livingroom, hd.kitchen, hd.toilet, h.collection,h.status, h.flag
+        FROM home h
+        LEFT JOIN home_detail hd ON h.id = hd.home_id
+        <where>
+            h.status = 1
+            <if test="address != null">
+                and h.address like concat('%',#{address},'%')
+            </if>
+        </where>
+        ORDER BY collection DESC
+<!--        where h.status = 1-->
+    </select>
+
+    <resultMap id="findDetail" type="com.clw.pojo.HomeDetailData">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+
+        <collection
+                property="urlList"
+                ofType="com.clw.domain.Img"
+                select="com.clw.mapper.ImgMapper.selectUrlByHomeId"
+                column="id">
+        </collection>
+        <collection
+                property="reviewList"
+                ofType="com.clw.pojo.ReviewPojo"
+                select="com.clw.mapper.ReviewMapper.selectReviewByHomeId"
+                column="id">
+        </collection>
+        <collection property="avgRate" ofType="decimal"
+                    select="com.clw.mapper.ReviewMapper.selectAvgRate"
+                    column="id"></collection>
+        <collection
+                property="hostList"
+                ofType="com.clw.domain.User"
+                select="com.clw.mapper.UserMapper.selectUserNameByHomeId"
+                column="host_id">
+        </collection>
+        <collection property="timeList" ofType="map"
+                    select="com.clw.mapper.OrderInfoMapper.selectStartTimeAndEndTime"
+                    column="id"></collection>
+    </resultMap>
+    <select id="getDetail" parameterType="Integer" resultMap="findDetail">
+    SELECT h.id, h.host_id, h.title, h.price, h.address, h.area, h.livepeople, h.describe, h.status, h.flag, hd.suite, hd.bedroom, hd.livingroom, hd.kitchen, hd.toilet
+    FROM home h
+    LEFT JOIN home_detail hd ON h.id = hd.home_id
+    where h.id = #{id}
+  </select>
+
+    <select id="getHomeTitle" parameterType="Integer" resultType="String">
+    select title
+    from home
+    where id = #{home_id}
+  </select>
+
+    <resultMap id="adminHomeResultMap" type="com.clw.pojo.AdminHome">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="host_id" jdbcType="INTEGER" property="hostId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="livepeople" jdbcType="INTEGER" property="livepeople"/>
+        <result column="collection" jdbcType="INTEGER" property="collection"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="flag" javaType="INTEGER" property="flag" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+
+        <collection property="hostName"
+                    ofType="String"
+                    column="host_id"
+                    select="com.clw.mapper.UserMapper.selectHostName"></collection>
+        <collection property="homeDetail"
+                    ofType="com.clw.domain.HomeDetail"
+                    column="id"
+                    select="com.clw.mapper.HomeDetailMapper.selectAllHomeDetail"></collection>
+        <collection property="imageList"
+                    ofType="java.lang.String"
+                    select="com.clw.mapper.ImgMapper.selectImageByHomeId"
+                    column="id"></collection>
+    </resultMap>
+    <select id="getHome" resultMap="adminHomeResultMap">
+        select <include refid="Base_Column_List"></include>
+        from home
+    </select>
+    <select id="getHomeByLike" resultMap="adminHomeResultMap">
+        select <include refid="Base_Column_List"></include>
+        from home
+        where title like concat('%',#{homeName},'%')
+    </select>
+
+    <select id="selectHomeName" resultType="String">
+        select title from home
+        where id = #{host_id}
+    </select>
+    <update id="updateHomeStatus">
+        UPDATE home
+        SET `status` = ABS( `status` - 1.0 )
+        WHERE
+        id = #{homeId}
+    </update>
+
+    <resultMap id="MyHomeResultMap" type="com.clw.pojo.MyHomePojo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="host_id" jdbcType="INTEGER" property="hostId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="livepeople" jdbcType="INTEGER" property="livepeople"/>
+        <result column="collection" jdbcType="INTEGER" property="collection"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection property="imgList" ofType="com.clw.domain.Img"
+                    column="id" select="com.clw.mapper.ImgMapper.selectUrlByHomeId"></collection>
+    </resultMap>
+    <select id="selectMyHomeByHostId" resultMap="MyHomeResultMap">
+        select <include refid="Base_Column_List"></include>
+        from home
+        where host_id = #{hostId}
+    </select>
+
+    <select id="selectHomeNameById" resultType="String">
+        select title
+        from home
+        where id = #{home_id}
+    </select>
+    <update id="updateHomeFlag">
+        update home
+        set flag = ABS(#{flag} - 1.0)
+        where id = #{homeId}
+    </update>
+</mapper>

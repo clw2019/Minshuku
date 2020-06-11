@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.mapper.HomeDetailMapper">
+  <resultMap id="BaseResultMap" type="com.clw.domain.HomeDetail">
+    <!--@mbg.generated-->
+    <!--@Table home_detail-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="home_id" jdbcType="INTEGER" property="homeId" />
+    <result column="suite" jdbcType="INTEGER" property="suite" />
+    <result column="bedroom" jdbcType="INTEGER" property="bedroom" />
+    <result column="livingroom" jdbcType="INTEGER" property="livingroom" />
+    <result column="kitchen" jdbcType="INTEGER" property="kitchen" />
+    <result column="toilet" jdbcType="INTEGER" property="toilet" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, home_id, suite, bedroom, livingroom, kitchen, toilet
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from home_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from home_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.HomeDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into home_detail (home_id, suite, bedroom, 
+      livingroom, kitchen, toilet
+      )
+    values (#{homeId,jdbcType=INTEGER}, #{suite,jdbcType=INTEGER}, #{bedroom,jdbcType=INTEGER}, 
+      #{livingroom,jdbcType=INTEGER}, #{kitchen,jdbcType=INTEGER}, #{toilet,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.HomeDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into home_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        home_id,
+      </if>
+      <if test="suite != null">
+        suite,
+      </if>
+      <if test="bedroom != null">
+        bedroom,
+      </if>
+      <if test="livingroom != null">
+        livingroom,
+      </if>
+      <if test="kitchen != null">
+        kitchen,
+      </if>
+      <if test="toilet != null">
+        toilet,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="suite != null">
+        #{suite,jdbcType=INTEGER},
+      </if>
+      <if test="bedroom != null">
+        #{bedroom,jdbcType=INTEGER},
+      </if>
+      <if test="livingroom != null">
+        #{livingroom,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        #{kitchen,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null">
+        #{toilet,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clw.domain.HomeDetail">
+    <!--@mbg.generated-->
+    update home_detail
+    <set>
+      <if test="homeId != null">
+        home_id = #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="suite != null">
+        suite = #{suite,jdbcType=INTEGER},
+      </if>
+      <if test="bedroom != null">
+        bedroom = #{bedroom,jdbcType=INTEGER},
+      </if>
+      <if test="livingroom != null">
+        livingroom = #{livingroom,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        kitchen = #{kitchen,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clw.domain.HomeDetail">
+    <!--@mbg.generated-->
+    update home_detail
+    set home_id = #{homeId,jdbcType=INTEGER},
+      suite = #{suite,jdbcType=INTEGER},
+      bedroom = #{bedroom,jdbcType=INTEGER},
+      livingroom = #{livingroom,jdbcType=INTEGER},
+      kitchen = #{kitchen,jdbcType=INTEGER},
+      toilet = #{toilet,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllHomeDetail" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from home_detail
+    where home_id = #{id}
+  </select>
+  <update id="updateByHomeId" parameterType="com.clw.domain.HomeDetail">
+
+    update home_detail
+    <set>
+<!--      <if test="homeId != null">-->
+<!--        home_id = #{homeId,jdbcType=INTEGER},-->
+<!--      </if>-->
+      <if test="suite != null">
+        suite = #{suite,jdbcType=INTEGER},
+      </if>
+      <if test="bedroom != null">
+        bedroom = #{bedroom,jdbcType=INTEGER},
+      </if>
+      <if test="livingroom != null">
+        livingroom = #{livingroom,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        kitchen = #{kitchen,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=INTEGER},
+      </if>
+    </set>
+    where home_id = #{homeId,jdbcType=INTEGER}
+  </update>
+</mapper>

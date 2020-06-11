@@ -1,0 +1,39 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /minshuku
+spring:
+  application:
+    name: minshuku
+  mvc:
+    servlet:
+      load-on-startup: 1
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+mybatis:
+  type-aliases-package: com.clw.domain.*
+  mapper-locations: classpath:com/clw/mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#自定义
+jwt:
+  secret: mySecret #JWT秘钥
+  expiration: 604800 #JWT的过期时间60*60*24*7 = 604800,如果采用表达式会报错，把表达式当成了String
+  tokenHeader: Authorization #JWT 存储的请求头
+upload:
+  upload-folder: E:/minshuku_img/
+---
+spring:
+  profiles: local
+  datasource:
+    username: root
+    password: wj113
+    url: jdbc:mysql://localhost:3306/minshuku?serverTimezone=Asia/Shanghai

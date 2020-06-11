@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.mapper.ImgMapper">
+  <resultMap id="BaseResultMap" type="com.clw.domain.Img">
+    <!--@mbg.generated-->
+    <!--@Table img-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="home_id" jdbcType="INTEGER" property="homeId" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, home_id, imgurl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Img" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into img (home_id, imgurl)
+    values (#{homeId,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.clw.domain.Img" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        home_id,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="homeId != null">
+        #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clw.domain.Img">
+    <!--@mbg.generated-->
+    update img
+    <set>
+      <if test="homeId != null">
+        home_id = #{homeId,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clw.domain.Img">
+    <!--@mbg.generated-->
+    update img
+    set home_id = #{homeId,jdbcType=INTEGER},
+    imgurl = #{imgurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectUrlByHomeId" resultMap="BaseResultMap">
+    select *
+    from img
+    where home_id = #{id}
+  </select>
+
+    <delete id="deleteByHomeId">
+      delete from img where home_id = #{homeId}
+    </delete>
+
+  <select id="selectImageByHomeId" resultType="String">
+    select imgurl
+    from img
+    where home_id = #{id}
+  </select>
+</mapper>
